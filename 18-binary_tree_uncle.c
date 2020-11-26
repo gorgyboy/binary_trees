@@ -12,21 +12,15 @@ binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 	binary_tree_t *parent, *ancestor;
 
 	parent = node->parent;
-	ancestor = node->parent->parent;
+	ancestor = parent->parent;
 
-	if (node == NULL || parent == NULL || ancestor == NULL ||
-	    (ancestor->left == NULL || ancestor->right == NULL))
+	if (node == NULL || parent == NULL || ancestor == NULL)
 		return (NULL);
 
 	if (ancestor->left == parent)
-	{
-		if (ancestor->right != NULL)
-			return (ancestor->right);
-	}
+		return (ancestor->right);
 	else if (ancestor->right == parent)
-	{
-		if (ancestor->left != NULL)
-			return (ancestor->left);
-	}
-	return (NULL);
+		return (ancestor->left);
+	else
+		return (NULL);
 }
